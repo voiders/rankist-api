@@ -1,0 +1,21 @@
+cache:
+  directories:
+    - node_modules
+language: node_js
+node_js:
+- '8'
+addons:
+  rethinkdb: '2.3'
+notifications:
+  email: false
+  slack:
+    secure: SAOyqEW2cXGZor+4TqgzdsVocw8R7nGu2dkBrJg7BX6NU1qVRiP2UYrRnaCLIuUJGz/agGsOh4WU9KYq7hK7eAUqta9ayOvPDeHk4MeKHNu4+DIw2d/n+c2Dll0gAm+lD12mzBRszHNFE6x1Cg2XaX+lPhN2D15s3VcAx9qF+djcnOie5XjiBuRbSmVWkmiZyh8A+O8nR2j6GcPSN/NXKPQ+ICMU094WsGcJAQZ2JgQLH4D3/gsgSDryScqsAuYKRRkNSySTfd1j+8ggOIlDqrpk2KOim6cG2ON5hkEjHocOzjG08+mPDLQA6VEtTQW2J8eRmR1A1hDPGYiUqw0RStew7E6qiBdUldakBufCOS7hSyCTaonnXaugxrNBhW3tLnF+XMBbguhjKwVvGsIqZruqrIkJHlwKzFz5+/Ukw7U3I/ZmZjSiKcvJufWTrltcFlIT8/4WlFcywp3xMNsLlPr0Motc8wb9MrL2H8nGzHvQhzOqfdGQyXF4xVGQuo2YMZQDhMoEssUe5YFf50Q3bZPkRQ1zt630AnvbZY19DZcxD6jc5cMP3TrGS0XHrGd1qMkpego2X2cmtBxDELc3OkpDuARqt8L0NxBAkn5zFFWh3Yi413dq2p/vqOBVxJHVAJmERUN6v1/+9G0BD+J+Tj3z+SzRqqJ5IR3Qe+v9VdE=
+before_script:
+- npm prune
+script:
+- npm t
+after_success:
+- npm run semantic-release
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
