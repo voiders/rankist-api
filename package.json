@@ -1,6 +1,6 @@
 {
   "name": "rankist-api",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "the best place to found and create ranking lists",
   "main": "src/index.js",
   "scripts": {
@@ -8,11 +8,12 @@
     "pretest": "eslint src --fix",
     "test:unit": "ava src/**/__tests__/**/*.test.js -s",
     "test": "cross-env NODE_ENV=test nyc npm run test:unit",
-    "posttest": "nyc report --reporter=html"
+    "posttest": "nyc report --reporter=html",
+    "semantic-release": "[[ $(git rev-parse --abbrev-ref HEAD) == \"master\" ]] && semantic-release pre && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/voiders/rankist-api.git"
+    "url": "https://github.com/voiders/rankist-api.git"
   },
   "author": "Jose Albizures <albizures3601@gmail.com>",
   "license": "MIT",
@@ -42,7 +43,8 @@
     "eslint": "^4.6.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "semantic-release": "^7.0.2"
   },
   "nyc": {
     "check-coverage": true,
