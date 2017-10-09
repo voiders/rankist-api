@@ -6,6 +6,8 @@ node_js:
 - '8'
 addons:
   rethinkdb: '2.3'
+services:
+  - mysql
 notifications:
   email: false
   slack:
