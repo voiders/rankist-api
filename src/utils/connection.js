@@ -1,16 +1,26 @@
 const r = require('rethinkdb')
+const mysql = require('mysql')
+const Promise = require('bluebird')
+
 const config = require('../config/env')
 
-const promise = r.connect({
-  host: config.DB_HOST,
-  port: config.DB_PORT,
-  name: config.DB_NAME,
-  user: config.DB_USER,
-  password: config.DB_PASSWORD
-})
+global.console.log(config)
+const promise = r.connect(config.rethinkdb)
 
 exports.promise = promise.then(conn => {
   exports.connection = conn
-  conn.use(config.DB_NAME)
+  conn.use(config.rethinkdb.DB_NAME)
   return conn
+})
+
+exports.conn = mysql.createConnection(config.mysql)
+
+exports.query = Promise.promisify(exports.conn.query)
+
+exports.getProperties = (obj, properties) => properties.map(key => obj[key])
+
+exports.conn.connect((err) => {
+  if (err) {
+    global.console.error('error connecting: ' + err.stack)
+  }
 })

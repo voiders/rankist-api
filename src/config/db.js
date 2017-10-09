@@ -18,11 +18,11 @@ const createTable = (table, conn) => r
   })
 
 const createDatabase = (db, conn) => r
-  .dbCreate(config.DB_NAME)
+  .dbCreate(db)
   .run(conn)
   .then(res => {
     log.info(res)
-    conn.use(config.DB_NAME)
+    conn.use(db)
     return conn
   })
   .catch(ReqlOpFailedError, err => {
@@ -36,8 +36,8 @@ const useDatabase = (db, conn) => {
 }
 
 module.exports = (promise) => promise
-  .then(conn => createDatabase(config.DB_NAME, conn))
-  .then(conn => useDatabase(config.DB_NAME, conn))
+  .then(conn => createDatabase(config.rethinkdb.db, conn))
+  .then(conn => useDatabase(config.rethinkdb.db, conn))
   .then(conn => Promise.all([ // create tables
     createTable('lists', conn)
     // add here the next tables

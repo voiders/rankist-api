@@ -7,11 +7,21 @@ const config = {}
 config.isDev = process.env.NODE_ENV === 'development'
 config.isTest = process.env.NODE_ENV === 'test'
 
-config.DB_HOST = process.env.DB_HOST || config.isTest ? 'localhost' : 'rethinkdb'
-config.DB_USER = process.env.DB_USER || 'admin'
-config.DB_NAME = process.env.DB_NAME || config.isTest ? 'rankist_test' : 'rankist'
-config.DB_PORT = Number(process.env.DB_PORT) || 28015
-config.DB_PASSWORD = process.env.DB_PASSWORD || ''
+config.rethinkdb = {
+  host: process.env.DB_HOST || config.isTest ? 'localhost' : 'rethinkdb',
+  user: process.env.DB_USER || 'admin',
+  db: process.env.DB_NAME || config.isTest ? 'rankist_test' : 'rankist',
+  port: Number(process.env.DB_PORT) || 28015,
+  password: process.env.DB_PASSWORD || ''
+}
+
+config.mysql = {
+  host: process.env.DB_HOST || config.isTest ? 'localhost' : 'mysql',
+  user: process.env.DB_USER || 'root',
+  database: process.env.DB_NAME || config.isTest ? 'rankist_test' : 'rankist',
+  port: Number(process.env.DB_PORT) || 3306,
+  password: process.env.DB_PASSWORD || 'root'
+}
 
 config.PORT = Number(process.env.PORT) || config.isTest ? undefined : 80
 config.ROOT_PATH = path.join(__dirname, '..', '..')
