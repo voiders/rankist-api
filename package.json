@@ -50,7 +50,8 @@
   "nyc": {
     "check-coverage": true,
     "exclude": [
-      "db.js"
+      "db.js",
+      "env.js"
     ],
     "per-file": false,
     "statements": 92,
