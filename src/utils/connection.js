@@ -4,12 +4,11 @@ const Promise = require('bluebird')
 
 const config = require('../config/env')
 
-global.console.log(config)
 const promise = r.connect(config.rethinkdb)
 
 exports.promise = promise.then(conn => {
   exports.connection = conn
-  conn.use(config.rethinkdb.DB_NAME)
+  conn.use(config.rethinkdb.db)
   return conn
 })
 

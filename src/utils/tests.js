@@ -17,5 +17,5 @@ exports.beforeEach = t => {
 }
 
 exports.afterAlways = t => conn.promise
-  .then(conn => r.dbDrop(config.DB_NAME).run(conn))
+  .then(conn => r.dbDrop(config.rethinkdb.db).run(conn))
   .then(t => app.get('server').close())

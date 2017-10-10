@@ -20,7 +20,7 @@ config.mysql = {
   user: process.env.DB_USER || 'root',
   database: process.env.DB_NAME || config.isTest ? 'rankist_test' : 'rankist',
   port: Number(process.env.DB_PORT) || 3306,
-  password: process.env.DB_PASSWORD || config.isTest ? '' : 'root'
+  password: process.env.DB_PASSWORD || config.isTest ? 'root' : 'root'
 }
 
 config.PORT = Number(process.env.PORT) || config.isTest ? undefined : 80

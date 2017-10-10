@@ -49,6 +49,9 @@
   },
   "nyc": {
     "check-coverage": true,
+    "exclude": [
+      "db.js"
+    ],
     "per-file": false,
     "statements": 92,
     "branches": 75,

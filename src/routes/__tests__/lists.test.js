@@ -7,9 +7,9 @@ test.beforeEach(beforeEach)
 
 test.after.always('drop db', afterAlways)
 
-test.cb('get /api/l/ 200', t => {
+test.cb('get /api/list/ 200', t => {
   t.context.req
-    .get('/api/l/')
+    .get('/api/list/')
     .set('Connection', 'keep-alive')
     .expect('Content-Type', /json/)
     .expect(200)
@@ -20,9 +20,9 @@ test.cb('get /api/l/ 200', t => {
     })
 })
 
-test.cb('post /api/l/ 201', t => {
+test.cb('post /api/list/ 201', t => {
   t.context.req
-    .post('/api/l/')
+    .post('/api/list/')
     .send({
       name: 'name test'
     })
@@ -41,9 +41,9 @@ test.cb('post /api/l/ 201', t => {
 
 let list
 
-test.cb('get /api/l/search 200', t => {
+test.cb('get /api/list/search 200', t => {
   t.context.req
-    .get('/api/l/search?name=test')
+    .get('/api/list/search?name=test')
     .set('Connection', 'keep-alive')
     .expect('Content-Type', /json/)
     .expect(200)
@@ -58,9 +58,9 @@ test.cb('get /api/l/search 200', t => {
     })
 })
 
-test.cb('get /api/l/:id 200', t => {
+test.cb('get /api/list/:id 200', t => {
   t.context.req
-    .get('/api/l/' + list.id)
+    .get('/api/list/' + list.id)
     .set('Connection', 'keep-alive')
     .expect('Content-Type', /json/)
     .expect(200)
@@ -71,9 +71,9 @@ test.cb('get /api/l/:id 200', t => {
     })
 })
 
-test.cb('put /api/l/:id 200', t => {
+test.cb('put /api/list/:id 200', t => {
   t.context.req
-    .put('/api/l/' + list.id)
+    .put('/api/list/' + list.id)
     .send({
       name: 'new name list'
     })
@@ -87,9 +87,9 @@ test.cb('put /api/l/:id 200', t => {
     })
 })
 
-test.cb('get /api/l/:id 404', t => {
+test.cb('get /api/list/:id 404', t => {
   t.context.req
-    .get('/api/l/' + '12345-1234')
+    .get('/api/list/' + '12345-1234')
     .set('Connection', 'keep-alive')
     .expect('Content-Type', /json/)
     .expect(404)
